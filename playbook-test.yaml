@@ -1,0 +1,23 @@
+---
+- name: sample playbook
+  hosts: webserver
+  tasks:
+  - name: sample file
+    file: 
+      path: /tmp/sample.txt
+      owner: root
+      group: root
+      mode: 0644
+      state: touch
+  - name: install apache
+    yum:
+      name: httpd
+      state: latest
+  - name: start apache service
+    service:
+      name: httpd
+      state: started
+  - name: copy sample template file
+    template:
+      src: index.html
+      dest: /var/www/html/
