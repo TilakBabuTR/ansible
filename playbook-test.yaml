@@ -1,13 +1,15 @@
 ---
 - name: sample playbook
-  hosts: webserver
+  become: yes
+  become_user: root
+  hosts: dev
   tasks:
   - name: sample file
     file: 
       path: /tmp/sample.txt
       owner: root
       group: root
-      mode: 0644
+      mode: g+w
       state: touch
   - name: install apache
     yum:
